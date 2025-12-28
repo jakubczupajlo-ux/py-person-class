@@ -10,12 +10,14 @@ class Person:
 def create_person_list(people: list) -> list:
     person_instances = [Person(p.get("name"), p.get("age")) for p in people]
 
-    for p_dict in people:
-        instance = Person.people.get(p_dict.get("name"))
-        spouse_name = p_dict.get("wife") or p_dict.get("husband")
-        spouse_key = "wife" if p_dict.get("wife") else "husband"
+    for person_dict in people:
+        person_instance = Person.people.get(person_dict.get("name"))
+        wife_name = person_dict.get("wife")
+        husband_name = person_dict.get("husband")
 
-        if spouse_name:
-            setattr(instance, spouse_key, Person.people.get(spouse_name))
+        if wife_name:
+            person_instance.wife = Person.people.get(wife_name)
+        if husband_name:
+            person_instance.husband = Person.people.get(husband_name)
 
     return person_instances
