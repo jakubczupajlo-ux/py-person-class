@@ -1,4 +1,3 @@
-
 class Person:
     people = {}
 
@@ -9,7 +8,9 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    person_instances = [Person(p.get("name"), p.get("age")) for p in people]
+    person_instances = [
+        Person(p.get("name"), p.get("age")) for p in people
+    ]
 
     for person_dict in people:
         person_instance = Person.people.get(person_dict.get("name"))
