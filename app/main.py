@@ -1,5 +1,4 @@
-class Person:
-from typing import List, Dict, Union, Any
+from typing import List, Dict, Any
 
 
 class Person:
@@ -22,9 +21,9 @@ def create_person_list(people_data: List[Dict[str, Any]]) -> List[Person]:
         name = person_dict["name"]
         person_instance = Person.people[name]
 
-        if "wife" in person_dict and person_dict["wife"]:
+        if person_dict.get("wife"):
             person_instance.wife = Person.people[person_dict["wife"]]
-        elif "husband" in person_dict and person_dict["husband"]:
+        elif person_dict.get("husband"):
             person_instance.husband = Person.people[person_dict["husband"]]
 
         result_list.append(person_instance)
