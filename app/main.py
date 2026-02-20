@@ -10,7 +10,7 @@ class Person:
         Person.people[name] = self
 
 
-def create_person_list(people_data: List[Dict[str, Any]]) -> List[Person]:
+def create_person_list(people_data: List[Dict[str, Any]]) -> List["Person"]:
     Person.people = {}
 
     for person_dict in people_data:
@@ -18,12 +18,11 @@ def create_person_list(people_data: List[Dict[str, Any]]) -> List[Person]:
 
     result_list = []
     for person_dict in people_data:
-        name = person_dict["name"]
-        person_instance = Person.people[name]
+        person_instance = Person.people[person_dict["name"]]
 
         if person_dict.get("wife"):
             person_instance.wife = Person.people[person_dict["wife"]]
-        elif person_dict.get("husband"):
+        if person_dict.get("husband"):
             person_instance.husband = Person.people[person_dict["husband"]]
 
         result_list.append(person_instance)
